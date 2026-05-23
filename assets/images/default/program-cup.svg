@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c1250"/>
+      <stop offset="1" stop-color="#071033"/>
+    </linearGradient>
+    <radialGradient id="r" cx="75%" cy="20%" r="70%">
+      <stop offset="0" stop-color="#fecb00" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fecb00" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <rect width="1200" height="800" fill="url(#r)"/>
+  <g opacity=".17" fill="none" stroke="#ffffff" stroke-width="2">
+    <path d="M120 180h320v180H120zM520 120h220v140H520zM800 280h260v200H800zM160 520h360v120H160z"/>
+    <path d="M220 260h140M570 185h120M870 360h150M230 585h220"/>
+    <circle cx="930" cy="180" r="82"/>
+    <circle cx="660" cy="520" r="120"/>
+  </g>
+  <g font-family="Montserrat, Arial, sans-serif" fill="#ffffff">
+    <text x="70" y="610" font-size="56" font-weight="800">Informatics Cup</text>
+    <text x="72" y="670" font-size="26" font-weight="500" opacity=".82">Kompetisi coding dan e-sports</text>
+  </g>
+  <rect x="70" y="705" width="190" height="12" rx="6" fill="#fecb00"/>
+</svg>

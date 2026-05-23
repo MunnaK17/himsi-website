@@ -1,0 +1,159 @@
+anda adalah senior full-stack developer php vanilla dan sistem analis. lanjutkan project website company profile himsi ubsi yang sudah berjalan di localhost menggunakan laragon/xampp.
+
+konteks project:
+- nama folder project: himsi-website
+- teknologi wajib: html, css vanilla, php vanilla, mysql, javascript opsional
+- dilarang menggunakan framework seperti laravel, codeigniter, bootstrap, tailwind, react, vue, dan sejenisnya
+- website harus berjalan di localhost via laragon/xampp
+- warna utama wajib menggunakan #0c1250
+- desain mengikuti style modern, rapi, profesional, responsive, dengan aksen kuning #fecb00
+- website ini adalah company profile himpunan mahasiswa sistem informasi
+- fitur pendaftaran online untuk open recruitment tidak boleh dibuat, hanya tampilkan informasi saja
+
+file penting yang sudah ada:
+- config/database.php
+- config/auth.php
+- includes/header.php
+- includes/navbar.php
+- includes/footer.php
+- includes/functions.php
+- assets/css/style.css
+- assets/css/admin.css
+- index.php
+- profil.php
+- divisi.php
+- program.php
+- open-recruitment.php
+- press-release.php
+- detail-press-release.php
+- admin/login.php
+- admin/dashboard.php
+- admin/press-release/index.php
+- admin/press-release/create.php
+- admin/press-release/store.php
+- admin/press-release/edit.php
+- admin/press-release/update.php
+- admin/press-release/delete.php
+- admin/open-recruitment/index.php
+- admin/open-recruitment/edit.php
+- admin/open-recruitment/update.php
+- database/himsi.sql
+
+progress yang sudah selesai:
+1. setup database + struktur folder
+2. pecah template menjadi partial php
+3. styling admin panel dasar
+4. crud press release admin
+5. halaman publik press release + detail artikel
+6. open recruitment dinamis + admin edit poster
+7. halaman profil lengkap
+
+sekarang lanjutkan tahap 8 sampai 10 saja:
+
+====================================
+tahap 8 — halaman divisi
+====================================
+kerjakan halaman divisi.php agar tampil modern dan responsive.
+
+kebutuhan:
+- ambil data dari tabel divisions kalau tabelnya sudah tersedia
+- kalau struktur tabel belum cocok, jangan drop tabel lama; buat file sql tambahan di database/alter_stage_8_10.sql
+- tampilkan nama divisi, deskripsi, fokus kerja, dan ikon/visual sederhana
+- desain harus konsisten dengan style.css
+- gunakan card layout yang rapi
+- tambahkan section hero seperti halaman lain
+- tambahkan empty state kalau data divisi belum tersedia
+
+tambahkan juga admin sederhana untuk divisi kalau belum ada:
+- admin/divisi/index.php
+- admin/divisi/create.php
+- admin/divisi/store.php
+- admin/divisi/edit.php
+- admin/divisi/update.php
+- admin/divisi/delete.php
+
+fitur admin divisi:
+- tambah divisi
+- edit divisi
+- hapus divisi
+- status active/inactive
+- hanya divisi active yang tampil di publik
+
+====================================
+tahap 9 — halaman program kerja
+====================================
+kerjakan halaman program.php agar tampil modern dan dinamis.
+
+kebutuhan:
+- ambil data dari tabel programs
+- tampilkan nama program, deskripsi, tanggal kegiatan, gambar jika ada
+- hanya tampilkan program yang statusnya active/published jika kolom status tersedia
+- kalau kolom status belum ada, tambahkan via database/alter_stage_8_10.sql
+- gunakan layout grid card yang responsive
+- gambar program diambil dari assets/images/uploads/
+- kalau gambar tidak ada, tampilkan placeholder yang rapi
+
+tambahkan juga admin program kerja kalau belum ada:
+- admin/program/index.php
+- admin/program/create.php
+- admin/program/store.php
+- admin/program/edit.php
+- admin/program/update.php
+- admin/program/delete.php
+
+fitur admin program:
+- tambah program kerja
+- upload gambar program
+- edit program kerja
+- ganti gambar
+- hapus program kerja dan file gambarnya
+- status active/inactive atau published/draft
+- hanya data aktif yang tampil di publik
+
+====================================
+tahap 10 — final polishing dan testing
+====================================
+rapikan keseluruhan website.
+
+kebutuhan final:
+- navbar harus aktif sesuai halaman
+- semua link navbar harus benar
+- footer rapi dan konsisten
+- responsive desktop, tablet, mobile
+- halaman admin tidak rusak di layar kecil
+- semua tombol admin konsisten: tambah, edit, hapus, lihat, kembali, batal
+- semua form punya label, spacing, dan focus state yang rapi
+- pastikan upload gambar memakai validasi:
+  - jpg, jpeg, png, webp
+  - maksimal 2mb
+  - nama file dibuat unik
+- jangan tampilkan artikel draft di halaman publik
+- jangan tampilkan open recruitment inactive di halaman publik
+- jangan tampilkan divisi inactive di halaman publik
+- jangan tampilkan program inactive di halaman publik
+- gunakan prepared statement pdo untuk semua query yang menerima input user
+- gunakan e() untuk output teks agar aman dari xss
+- gunakan url() untuk path link/gambar
+- jangan menghapus fitur yang sudah berjalan
+
+aturan pengerjaan:
+1. inspect dulu struktur project sebelum mengubah file.
+2. jangan rewrite total project.
+3. jangan mengubah nama database sembarangan. database yang dipakai sekarang adalah himsi.
+4. kalau perlu perubahan database, buat file sql tambahan:
+   database/alter_stage_8_10.sql
+5. setiap selesai mengubah file, jelaskan file apa saja yang diubah dan fungsinya.
+6. prioritaskan bug-free dan konsisten dengan kode yang sudah ada.
+7. jangan menggunakan cdn framework css.
+8. boleh menggunakan javascript vanilla kecil untuk hamburger menu atau preview image.
+9. pastikan semua halaman publik tetap bisa diakses tanpa login.
+10. halaman admin wajib require_admin().
+
+output yang saya butuhkan:
+- langsung edit file project sesuai instruksi
+- setelah selesai, berikan ringkasan:
+  1. file yang dibuat
+  2. file yang diubah
+  3. sql tambahan jika ada
+  4. cara testing manual
+  5. akun admin tetap tidak berubah
