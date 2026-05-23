@@ -1,9 +1,9 @@
 # ===============================================================
 # HIMSI Website - URL Rewriting & Security
-# Portable: jalan di local (/himsi-website/) maupun VPS (root /)
+# Untuk Apache (Laragon lokal). Di VPS Nginx pakai nginx-rewrite.conf
 # ===============================================================
 
-# Matikan directory listing (folder admin/, uploads/, dll tidak bisa dibrowse)
+# Matikan directory listing
 Options -Indexes
 
 # Default page kalau folder dibuka tanpa file
@@ -12,23 +12,11 @@ DirectoryIndex index.php index.html
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # ---------------------------------------------------------
-    # Skip rewrite untuk folder admin/ (admin tetap pakai .php internal)
-    # ---------------------------------------------------------
+    # Skip rewrite untuk folder admin/ (admin tetap pakai .php)
     RewriteRule ^admin(/.*)?$ - [L]
 
-    # ---------------------------------------------------------
-    # 1. Redirect 301: file.php  ->  file (URL bersih untuk publik)
-    #    Hanya redirect kalau diakses langsung dari browser (bukan internal)
-    # ---------------------------------------------------------
-    RewriteCond %{ENV:REDIRECT_STATUS} ^$
-    RewriteCond %{THE_REQUEST} \s([^?]*?)\.php[\s?] [NC]
-    RewriteRule ^(.+?)\.php$ /%1 [R=301,L,NE]
-
-    # ---------------------------------------------------------
-    # 2. Internal rewrite: file  ->  file.php
-    #    (pengunjung lihat URL bersih, server tetap eksekusi .php)
-    # ---------------------------------------------------------
+    # Internal rewrite: /file -> /file.php
+    # (pengunjung lihat URL bersih, server tetap eksekusi .php)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}.php -f
@@ -38,7 +26,7 @@ DirectoryIndex index.php index.html
 # ===============================================================
 # Block akses ke file sensitif
 # ===============================================================
-<FilesMatch "\.(sql|md|log|ini|conf)$">
+<FilesMatch "\.(sql|md|log|ini|conf|example)$">
     Require all denied
 </FilesMatch>
 
