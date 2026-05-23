@@ -5,7 +5,7 @@ require_once __DIR__ . '/includes/functions.php';
 $slug = $_GET['slug'] ?? '';
 
 if (!$slug) {
-    header('Location: press-release.php');
+    header('Location: press-release');
     exit;
 }
 
@@ -54,7 +54,7 @@ $pageTitle = $article['title'];
             </article>
 
             <div class="detail-actions">
-                <a class="btn-secondary" href="<?= url('press-release.php'); ?>">← Kembali ke Press Release</a>
+                <a class="btn-secondary" href="<?= url('press-release'); ?>">← Kembali ke Press Release</a>
             </div>
         </div>
     </section>

@@ -50,7 +50,7 @@ $articles = $stmt->fetchAll();
                                 <h2><?= e($article['title']); ?></h2>
                                 <p><?= e(excerpt($article['excerpt'], 130)); ?></p>
 
-                                <a class="article-link" href="<?= url('detail-press-release.php?slug=' . $article['slug']); ?>">
+                                <a class="article-link" href="<?= url('detail-press-release?slug=' . $article['slug']); ?>">
                                     Baca Selengkapnya →
                                 </a>
                             </div>

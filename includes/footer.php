@@ -6,10 +6,10 @@
         </div>
         <div>
             <h4>Tautan Penting</h4>
-            <a href="<?= url('profil.php'); ?>">Tentang Kami</a>
-            <a href="<?= url('program.php'); ?>">Program Kerja</a>
-            <a href="<?= url('press-release.php'); ?>">Press Release</a>
-            <a href="<?= url('kontak.php'); ?>">Kontak</a>
+            <a href="<?= url('profil'); ?>">Tentang Kami</a>
+            <a href="<?= url('program'); ?>">Program Kerja</a>
+            <a href="<?= url('press-release'); ?>">Press Release</a>
+            <a href="<?= url('kontak'); ?>">Kontak</a>
         </div>
         <div>
             <h4>Sosial Media</h4>

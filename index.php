@@ -27,8 +27,8 @@ require_once __DIR__ . '/includes/navbar.php';
             <h1>Himpunan Mahasiswa Sistem Informasi Universitas Bina Sarana Informatika</h1>
             <p>Menjadi wadah aspirasi, kolaborasi, dan pengembangan diri bagi mahasiswa Sistem Informasi UBSI menuju masa depan teknologi yang inovatif.</p>
             <div class="hero-actions">
-                <a class="btn btn-primary" href="<?= url('open-recruitment.php'); ?>">Gabung Kami</a>
-                <a class="btn btn-outline-light" href="<?= url('program.php'); ?>">Jelajahi Program</a>
+                <a class="btn btn-primary" href="<?= url('open-recruitment'); ?>">Gabung Kami</a>
+                <a class="btn btn-outline-light" href="<?= url('program'); ?>">Jelajahi Program</a>
             </div>
         </div>
     </section>
@@ -40,10 +40,10 @@ require_once __DIR__ . '/includes/navbar.php';
                 <h2>Membangun Ekosistem Digital yang Kolaboratif</h2>
                 <p>HIMSI Universitas Bina Sarana Informatika adalah organisasi kemahasiswaan yang berfokus pada pengembangan kompetensi akademik dan non-akademik di bidang teknologi informasi.</p>
                 <p>Dengan semangat inovasi, kami menyelenggarakan berbagai kegiatan mulai dari workshop teknis, kompetisi tingkat nasional, hingga pengabdian masyarakat berbasis teknologi.</p>
-                <a class="link-arrow" href="<?= url('profil.php'); ?>">Profil Selengkapnya →</a>
+                <a class="link-arrow" href="<?= url('profil'); ?>">Profil Selengkapnya →</a>
             </div>
             <div class="image-card reveal">
-                <img src="<?= asset('images/default/about.svg'); ?>" alt="Mahasiswa berkolaborasi di laboratorium komputer">
+                <img src="<?= asset('images/default/1.jpg'); ?>" alt="Mahasiswa berkolaborasi di laboratorium komputer">
             </div>
         </div>
     </section>
@@ -64,7 +64,7 @@ require_once __DIR__ . '/includes/navbar.php';
                     <span class="badge yellow">Program Kerja</span>
                     <h2>Inovasi Melalui Program Unggulan</h2>
                 </div>
-                <a class="btn btn-dark" href="<?= url('program.php'); ?>">Lihat Semua Program</a>
+                <a class="btn btn-dark" href="<?= url('program'); ?>">Lihat Semua Program</a>
             </div>
 
             <div class="program-grid">
@@ -98,7 +98,7 @@ require_once __DIR__ . '/includes/navbar.php';
                             <small><?= format_tanggal($item['published_at']); ?></small>
                             <h3><?= e($item['title']); ?></h3>
                             <p><?= e($item['excerpt']); ?></p>
-                            <a href="<?= url('detail-press-release.php?slug=' . e($item['slug'])); ?>">Baca Detail →</a>
+                            <a href="<?= url('detail-press-release?slug=' . e($item['slug'])); ?>">Baca Detail →</a>
                         </div>
                     </article>
                 <?php endforeach; ?>

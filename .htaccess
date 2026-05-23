@@ -1,0 +1,47 @@
+# ===============================================================
+# HIMSI Website - URL Rewriting & Security
+# ===============================================================
+
+# Matikan directory listing (folder admin/, uploads/, dll tidak bisa dibrowse)
+Options -Indexes
+
+# Default page kalau folder dibuka tanpa file
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /himsi-website/
+
+    # ---------------------------------------------------------
+    # Jangan rewrite URL di dalam folder admin/
+    # (admin tetap pakai .php supaya form & redirect internal aman)
+    # ---------------------------------------------------------
+    RewriteRule ^admin(/.*)?$ - [L]
+
+    # ---------------------------------------------------------
+    # 1. Redirect 301: /file.php  ->  /file  (URL bersih untuk publik)
+    # ---------------------------------------------------------
+    RewriteCond %{THE_REQUEST} \s/+himsi-website/([^\s]+?)\.php[\s?] [NC]
+    RewriteRule ^ /himsi-website/%1 [R=301,L,NE]
+
+    # ---------------------------------------------------------
+    # 2. Internal rewrite: /file  ->  /file.php
+    #    (pengunjung lihat URL bersih, server tetap eksekusi .php)
+    # ---------------------------------------------------------
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.+?)/?$ $1.php [L]
+</IfModule>
+
+# ===============================================================
+# Block akses ke file sensitif
+# ===============================================================
+<FilesMatch "\.(sql|md|txt|log|ini|conf)$">
+    Require all denied
+</FilesMatch>
+
+# Tetap izinkan robots.txt kalau nanti ada
+<Files "robots.txt">
+    Require all granted
+</Files>

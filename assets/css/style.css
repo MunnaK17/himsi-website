@@ -145,7 +145,7 @@ img {
     align-items: center;
     background:
         linear-gradient(0deg, rgba(12, 18, 80, 0.92), rgba(12, 18, 80, 0.5)),
-        url('../images/default/hero.svg') center/cover no-repeat;
+        url('../images/default/Hero.jpg') center/cover no-repeat;
     overflow: hidden;
 }
 
