@@ -1,0 +1,63 @@
+# ===============================================================
+# Nginx config untuk HIMSI Website
+# Server: aaPanel + PHP 8.4
+# Akses via IP: http://54.226.59.255/
+#
+# CARA PASANG DI aaPanel:
+# 1. Buka aaPanel -> Website -> klik domain himsi-website
+# 2. Tab "Config File"
+# 3. Cari blok "location /" yang sudah ada, GANTI dengan blok di
+#    bagian "PASTE BAGIAN INI" di bawah
+# 4. Save -> Reload Nginx
+#
+# ATAU lewat SSH:
+#    nano /www/server/panel/vhost/nginx/himsi-website.conf
+# ===============================================================
+
+# =====================================================
+# PASTE BAGIAN INI ke dalam server { ... } di config aaPanel
+# (biasanya menggantikan blok "location / { ... }")
+# =====================================================
+
+# Block file sensitif
+location ~* \.(sql|md|log|ini|conf|example|gitignore|gitkeep)$ {
+    deny all;
+    return 404;
+}
+
+# Block hidden files (.git, .env, .htaccess, dll)
+location ~ /\. {
+    deny all;
+    return 404;
+}
+
+# Folder admin tetap pakai .php internal
+location /admin/ {
+    try_files $uri $uri/ /admin/index.php?$query_string;
+}
+
+# Redirect 301: /file.php -> /file
+location ~ ^/(?!admin/)(.+)\.php$ {
+    return 301 /$1;
+}
+
+# URL bersih: /profil -> profil.php
+location / {
+    try_files $uri $uri/ $uri.php?$query_string /index.php?$query_string;
+}
+
+# PHP handler (PHP 8.4 di aaPanel)
+location ~ \.php$ {
+    try_files $uri =404;
+    fastcgi_pass unix:/tmp/php-cgi-84.sock;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+}
+
+# Cache assets statis
+location ~* \.(css|js|jpg|jpeg|png|gif|svg|webp|ico|woff|woff2|ttf)$ {
+    expires 30d;
+    add_header Cache-Control "public, no-transform";
+    access_log off;
+}

@@ -1,13 +1,29 @@
 <?php
 // config/database.php
-// Sesuaikan BASE_URL kalau nama folder project kamu bukan "himsi-website".
+// Auto-detect environment: localhost (lokal) vs domain VPS (production)
 
-define('BASE_URL', '/himsi-website/');
+$host = $_SERVER['HTTP_HOST'] ?? '';
+$isLocal = (
+    strpos($host, 'localhost') !== false ||
+    strpos($host, '127.0.0.1') !== false ||
+    strpos($host, '.test') !== false
+);
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'himsi');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+if ($isLocal) {
+    // ===== LOKAL (Laragon) =====
+    define('BASE_URL', '/himsi-website/');
+    define('DB_HOST', 'localhost');
+    define('DB_NAME', 'himsi');
+    define('DB_USER', 'root');
+    define('DB_PASS', '');
+} else {
+    // ===== VPS / PRODUCTION =====
+    define('BASE_URL', '/');
+    define('DB_HOST', 'localhost');
+    define('DB_NAME', 'himsi');
+    define('DB_USER', 'himsi');
+    define('DB_PASS', 'root');
+}
 
 try {
     $pdo = new PDO(

@@ -1,5 +1,6 @@
 # ===============================================================
 # HIMSI Website - URL Rewriting & Security
+# Portable: jalan di local (/himsi-website/) maupun VPS (root /)
 # ===============================================================
 
 # Matikan directory listing (folder admin/, uploads/, dll tidak bisa dibrowse)
@@ -10,22 +11,22 @@ DirectoryIndex index.php index.html
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /himsi-website/
 
     # ---------------------------------------------------------
-    # Jangan rewrite URL di dalam folder admin/
-    # (admin tetap pakai .php supaya form & redirect internal aman)
+    # Skip rewrite untuk folder admin/ (admin tetap pakai .php internal)
     # ---------------------------------------------------------
     RewriteRule ^admin(/.*)?$ - [L]
 
     # ---------------------------------------------------------
-    # 1. Redirect 301: /file.php  ->  /file  (URL bersih untuk publik)
+    # 1. Redirect 301: file.php  ->  file (URL bersih untuk publik)
+    #    Hanya redirect kalau diakses langsung dari browser (bukan internal)
     # ---------------------------------------------------------
-    RewriteCond %{THE_REQUEST} \s/+himsi-website/([^\s]+?)\.php[\s?] [NC]
-    RewriteRule ^ /himsi-website/%1 [R=301,L,NE]
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteCond %{THE_REQUEST} \s([^?]*?)\.php[\s?] [NC]
+    RewriteRule ^(.+?)\.php$ /%1 [R=301,L,NE]
 
     # ---------------------------------------------------------
-    # 2. Internal rewrite: /file  ->  /file.php
+    # 2. Internal rewrite: file  ->  file.php
     #    (pengunjung lihat URL bersih, server tetap eksekusi .php)
     # ---------------------------------------------------------
     RewriteCond %{REQUEST_FILENAME} !-f
@@ -37,11 +38,10 @@ DirectoryIndex index.php index.html
 # ===============================================================
 # Block akses ke file sensitif
 # ===============================================================
-<FilesMatch "\.(sql|md|txt|log|ini|conf)$">
+<FilesMatch "\.(sql|md|log|ini|conf)$">
     Require all denied
 </FilesMatch>
 
-# Tetap izinkan robots.txt kalau nanti ada
 <Files "robots.txt">
     Require all granted
 </Files>

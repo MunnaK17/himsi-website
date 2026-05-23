@@ -1,0 +1,30 @@
+# ===== IDE & OS =====
+.vscode/
+.idea/
+.kiro/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ===== Logs =====
+*.log
+
+# ===== Environment / Secrets =====
+.env
+.env.local
+config/database.local.php
+
+# ===== User uploads =====
+# Jangan push gambar lokal supaya nggak nimpa upload-an asli di VPS
+assets/images/uploads/*
+!assets/images/uploads/.gitkeep
+
+# ===== Database dumps lokal =====
+*.sql.bak
+
+# ===== Composer (kalau nanti dipakai) =====
+/vendor/
+
+# ===== Catatan pribadi =====
+prompt.txt
