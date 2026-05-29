@@ -1,4 +1,9 @@
 <?php
+// Suppress deprecated warnings for PHP 8.1+
+error_reporting(E_ALL & ~E_DEPRECATED);
+ini_set('display_errors', '0');
+ini_set('display_startup_errors', '0');
+
 // config/database.php
 // Auto-detect environment: localhost (lokal) vs domain VPS (production)
 

@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../includes/functions.php';
 require_once __DIR__ . '/../../config/auth.php';
+require_once __DIR__ . '/../includes/upload.php';
 
 require_admin();
 
@@ -27,7 +28,7 @@ $pageTitle = 'Tambah Divisi';
     </header>
 
     <section class="form-card">
-        <form class="admin-form" method="POST" action="store.php">
+        <form class="admin-form" method="POST" action="store.php" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Nama Divisi</label>
                 <input type="text" id="name" name="name" placeholder="Contoh: Divisi Kominfo" required>
@@ -41,6 +42,17 @@ $pageTitle = 'Tambah Divisi';
             <div class="form-group">
                 <label for="focus">Fokus Kerja</label>
                 <textarea id="focus" name="focus" rows="3" placeholder="Contoh: Publikasi, dokumentasi, branding."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tagline">Tagline Divisi</label>
+                <input type="text" id="tagline" name="tagline" maxlength="255" placeholder="Contoh: Membangun komunikasi digital yang efektif">
+            </div>
+
+            <div class="form-group">
+                <label for="cover_image">Cover Image</label>
+                <input type="file" id="cover_image" name="cover_image" accept="image/jpeg,image/png,image/webp">
+                <small>Upload cover image. Format: JPG, PNG, WEBP. Maksimal 2MB.</small>
             </div>
 
             <div class="form-row">

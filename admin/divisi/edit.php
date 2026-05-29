@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../includes/functions.php';
 require_once __DIR__ . '/../../config/auth.php';
+require_once __DIR__ . '/../includes/upload.php';
 
 require_admin();
 
@@ -37,7 +38,7 @@ if (!$item) {
     </header>
 
     <section class="form-card">
-        <form class="admin-form" method="POST" action="update.php">
+        <form class="admin-form" method="POST" action="update.php" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= e($item['id']); ?>">
 
             <div class="form-group">
@@ -53,6 +54,22 @@ if (!$item) {
             <div class="form-group">
                 <label for="focus">Fokus Kerja</label>
                 <textarea id="focus" name="focus" rows="3"><?= e($item['focus'] ?? ''); ?></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tagline">Tagline Divisi</label>
+                <input type="text" id="tagline" name="tagline" maxlength="255" value="<?= e($item['tagline'] ?? ''); ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="cover_image">Cover Image</label>
+                <?php if (!empty($item['cover_image'])): ?>
+                    <p style="margin: 0 0 10px;">
+                        <img src="<?= image_url($item['cover_image']); ?>" alt="" style="width: 200px; height: 120px; object-fit: cover; border-radius: 10px; border: 1px solid #e5e7eb;">
+                    </p>
+                <?php endif; ?>
+                <input type="file" id="cover_image" name="cover_image" accept="image/jpeg,image/png,image/webp">
+                <small>Upload cover image baru. Kosongkan jika tidak ingin mengubah.</small>
             </div>
 
             <div class="form-row">
